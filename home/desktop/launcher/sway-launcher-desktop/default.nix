@@ -1,0 +1,14 @@
+{ pkgs, ... }:
+{
+  xdg.configFile."sway-launcher-desktop/providers.conf".text = ''
+    [desktop]
+    list_cmd=sway-launcher-desktop list-entries
+    preview_cmd=sway-launcher-desktop describe-desktop "{1}"
+    launch_cmd=sway-launcher-desktop run-desktop '{1}' {2}
+    purge_cmd=test -f '{1}' || exit 43
+  '';
+
+  home.packages = with pkgs; [
+    sway-launcher-desktop
+  ];
+}

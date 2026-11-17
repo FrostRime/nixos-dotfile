@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./sudo
+    ./sudo-rs
+  ];
+}

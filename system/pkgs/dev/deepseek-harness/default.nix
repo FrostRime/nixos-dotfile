@@ -1,0 +1,3 @@
+{
+  programs.dsh.enable = true;
+}

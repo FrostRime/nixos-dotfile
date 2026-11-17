@@ -1,0 +1,107 @@
+input {
+    keyboard {
+        xkb {
+            layout ""
+            model ""
+            rules ""
+            variant ""
+            options "caps:escape"
+        }
+        repeat-delay 600
+        repeat-rate 25
+        track-layout "global"
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+prefer-no-csd
+layout {
+    gaps 0
+    struts {
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+    focus-ring {
+        width 1
+        active-color "#89b4fa"
+    }
+    shadow {
+        on
+        offset x=0.000000 y=5.000000
+        softness 30
+        spread 5
+        draw-behind-window false
+        color "#1e1e2e"
+    }
+    default-column-width
+    center-focused-column "never"
+    background-color "#1e1e2e"
+}
+cursor {
+    xcursor-size 32
+}
+hotkey-overlay { skip-at-startup; }
+binds {
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+    Mod+Ctrl+J { move-window-down; }
+    Mod+Ctrl+K { move-window-up; }
+    Mod+Ctrl+L { move-column-right; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+D { spawn "bash" "-c" "(ss -lx | grep \"$XDG_RUNTIME_DIR/foot\" &>/dev/null || rm \"$XDG_RUNTIME_DIR\"/foot*.sock || true && nohup bash -c 'foot --server' 2>&1 &) && (while ! ss -lx | grep \"$XDG_RUNTIME_DIR/foot\" &>/dev/null ; do true; done;) && footclient --app-id launcher bash -l -c 'TERMINAL_COMMAND=\"footclient\" sway-launcher-desktop'"; }
+    Mod+End { focus-column-last; }
+    Mod+F { maximize-column; }
+    Mod+Home { focus-column-first; }
+    Mod+I { focus-workspace-up; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+    Mod+H { focus-column-left; }
+    Mod+Shift+J { focus-window-down; }
+    Mod+Shift+K { focus-window-up; }
+    Mod+Shift+L { focus-column-right; }
+    Mod+Shift+H { focus-column-left; }
+    Mod+O { set-column-width "-10%"; }
+    Mod+P { set-column-width "+10%"; }
+    Mod+Q { close-window; }
+    Mod+Shift+E { quit; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Shift+O { set-window-height "-10%"; }
+    Mod+Shift+P { set-window-height "+10%"; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    //Mod+T { spawn "kitty" "--single-instance"; }
+    Mod+T { spawn "bash" "-c" "(ss -lx | grep \"$XDG_RUNTIME_DIR/foot\" &>/dev/null || rm \"$XDG_RUNTIME_DIR\"/foot*.sock || true && nohup bash -c 'foot --server' 2>&1 &) && (while ! ss -lx | grep \"$XDG_RUNTIME_DIR/foot\" &>/dev/null ; do true; done;) && footclient"; }
+    Mod+U { focus-workspace-down; }
+    Mod+V { toggle-window-floating; }
+    Shift+Ctrl+Z { spawn-sh "grim -g \"$(slurp)\" - | wl-copy"; }
+}
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+window-rule {
+    draw-border-with-background false
+    // geometry-corner-radius 8
+    // clip-to-geometry true
+}
+window-rule {
+    match is-floating=true
+    baba-is-float true
+}
+window-rule {
+    match is-active=true
+    opacity 1.0
+}
+window-rule {
+    match is-active=false
+    opacity 0.65
+}
+window-rule {
+    match app-id="launcher"
+    open-floating true
+    baba-is-float false
+}
+

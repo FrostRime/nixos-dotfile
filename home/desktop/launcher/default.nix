@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./sway-launcher-desktop
+  ];
+}
